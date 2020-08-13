@@ -4,7 +4,7 @@ export default class Transaction extends Component {
   render() {
     const { transactionData } = this.props;
     const removeTransaction = () =>
-      this.props.removeTransaction(transactionData.id);
+      this.props.removeTransaction(transactionData._id);
     return (
       <div>
         <p>

@@ -7,6 +7,7 @@ export default class Transactions extends Component {
       <div>
         {transactions.map((t) => (
           <Transaction
+            key={t._id}
             removeTransaction={this.props.removeTransaction}
             transactionData={t}
           />

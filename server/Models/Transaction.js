@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema({
   amount: Number,
-  category: Number,
+  category: String,
   vendor: String,
 });
 
-const transaction = mongoose.model('transaction', transactionSchema);
+const Transaction = mongoose.model('transaction', transactionSchema);
 
-module.exports = transaction;
+module.exports = Transaction;
