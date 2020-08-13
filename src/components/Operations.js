@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/Operations.css';
+import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@material-ui/core/Button';
 
 export default class Operations extends Component {
   constructor() {
@@ -19,7 +21,6 @@ export default class Operations extends Component {
     event.target.value === 'deposit'
       ? this.props.addTransaction(this.state, 'deposit')
       : this.props.addTransaction(this.state, 'withdraw');
-    // document.getElementsByTagName('input').value = '';
   };
 
   render() {
@@ -49,22 +50,26 @@ export default class Operations extends Component {
             onChange={this.onInputChange}
           />
           <div className="btn-container">
-            <button
+            <Button
+              variant="contained"
+              color="primary"
               name="type"
               value="deposit"
               id="depositBtn"
               onClick={this.addTransaction}
             >
               Deposit
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
               name="type"
               value="withdraw"
               id="withdrawBtn"
               onClick={this.addTransaction}
             >
               Withdraw
-            </button>
+            </Button>
           </div>
         </div>
       </div>

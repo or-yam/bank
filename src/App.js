@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Navbar from './components/NavBar';
 import HomePage from './components/HomePage';
 import Transactions from './components/Transactions';
 import Operations from './components/Operations';
+import Categories from './components/Categories';
 class App extends Component {
   constructor() {
     super();
@@ -30,7 +32,7 @@ class App extends Component {
       operation.amount *= -1;
     }
     axios.post('http://localhost:4000/transaction', operation).then((res) => {
-      const updatedTransactions = [res.data, ...this.state.transactions];
+      const updatedTransactions = [...this.state.transactions, res.data];
       const updatedBalance = this.balanceCalc(updatedTransactions);
       updatedBalance < 0
         ? alert('too short')
@@ -44,17 +46,13 @@ class App extends Component {
   removeTransaction = (id) => {
     axios.delete(`http://localhost:4000/transaction/${id}`).then((res) => {
       if (res.data === 'success') {
-        let updatedTransactions = [...this.state.transactions];
-
-        const indexToRemove = this.state.transactions.findIndex(
-          (t) => t.id === id
-        );
-        updatedTransactions.splice(indexToRemove, 1);
-
-        const updatedBalance = this.balanceCalc(updatedTransactions);
-        this.setState({
-          transactions: updatedTransactions,
-          balance: updatedBalance,
+        axios.get('http://localhost:4000/transactions').then((res) => {
+          const updatedTransactions = res.data;
+          const updatedBalance = this.balanceCalc(updatedTransactions);
+          this.setState({
+            transactions: updatedTransactions,
+            balance: updatedBalance,
+          });
         });
       } else {
         alert('not found');
@@ -66,45 +64,12 @@ class App extends Component {
     return (
       <>
         <Router>
-          <nav className="main-nav">
-            <ul className="menu">
-              <li>
-                <Link to="/">
-                  <img
-                    src="https://image.flaticon.com/icons/svg/714/714286.svg"
-                    alt="logo"
-                  />
-                  <span>ChiliPepper Pay</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/transactions">
-                  <img
-                    src="https://image.flaticon.com/icons/svg/3176/3176253.svg"
-                    alt="trans"
-                  />
-                  <span>Transactions</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/operations">
-                  <img
-                    src="https://image.flaticon.com/icons/svg/909/909670.svg"
-                    alt="operation"
-                  />
-                  <span>New Transaction</span>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
+          <Navbar />
           <Route
             path="/"
             exact
             render={({ match }) => <HomePage match={match} />}
           />
-
           <Route
             path="/transactions"
             exact
@@ -119,7 +84,6 @@ class App extends Component {
               </>
             )}
           />
-
           <Route
             path="/operations"
             exact
@@ -128,6 +92,19 @@ class App extends Component {
                 <Operations
                   balance={this.state.balance}
                   addTransaction={this.addTransaction}
+                  match={match}
+                />
+              </>
+            )}
+          />
+          <Route
+            path="/categories"
+            exact
+            render={({ match }) => (
+              <>
+                <Categories
+                  balanceCalc={this.balanceCalc}
+                  transactions={this.state.transactions}
                   match={match}
                 />
               </>

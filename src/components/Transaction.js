@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/Transaction.css';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 export default class Transaction extends Component {
   render() {
     const { transactionData } = this.props;
@@ -9,15 +11,17 @@ export default class Transaction extends Component {
       <div
         className={
           transactionData.amount < 0
-            ? 'positiveTrans transaction '
-            : 'negativeTrans transaction '
+            ? 'negativeTrans transaction '
+            : 'positiveTrans transaction '
         }
       >
         <div className="transData">
           <span>Amount: {transactionData.amount}$</span>
           <span>Vendor:{transactionData.vendor}</span>
           <span>Category:{transactionData.category}</span>
-        <button onClick={removeTransaction}>Remove</button>
+          <Button onClick={removeTransaction} variant="contained">
+            <DeleteIcon />
+          </Button>
         </div>
       </div>
     );
