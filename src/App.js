@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import HomePage from './components/HomePage';
 import Transactions from './components/Transactions';
-import Balance from './components/Balance';
 import Operations from './components/Operations';
 class App extends Component {
   constructor() {
@@ -63,15 +64,77 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>chiliPepper Pay</h1>
-        <Balance balance={this.state.balance} />
-        <Transactions
-          removeTransaction={this.removeTransaction}
-          transactions={this.state.transactions}
-        />
-        <Operations addTransaction={this.addTransaction} />
-      </div>
+      <>
+        <Router>
+          <nav className="main-nav">
+            <ul className="menu">
+              <li>
+                <Link to="/">
+                  <img
+                    src="https://image.flaticon.com/icons/svg/714/714286.svg"
+                    alt="logo"
+                  />
+                  <span>ChiliPepper Pay</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/transactions">
+                  <img
+                    src="https://image.flaticon.com/icons/svg/3176/3176253.svg"
+                    alt="trans"
+                  />
+                  <span>Transactions</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/operations">
+                  <img
+                    src="https://image.flaticon.com/icons/svg/909/909670.svg"
+                    alt="operation"
+                  />
+                  <span>New Transaction</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <Route
+            path="/"
+            exact
+            render={({ match }) => <HomePage match={match} />}
+          />
+
+          <Route
+            path="/transactions"
+            exact
+            render={({ match }) => (
+              <>
+                <Transactions
+                  balance={this.state.balance}
+                  removeTransaction={this.removeTransaction}
+                  transactions={this.state.transactions}
+                  match={match}
+                />
+              </>
+            )}
+          />
+
+          <Route
+            path="/operations"
+            exact
+            render={({ match }) => (
+              <>
+                <Operations
+                  balance={this.state.balance}
+                  addTransaction={this.addTransaction}
+                  match={match}
+                />
+              </>
+            )}
+          />
+        </Router>
+      </>
     );
   }
 }

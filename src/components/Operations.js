@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/Operations.css';
 
 export default class Operations extends Component {
   constructor() {
@@ -23,45 +24,48 @@ export default class Operations extends Component {
 
   render() {
     return (
-      <div>
+      <div className="operation-container">
         <div className="operation">
-          <h3>Amount</h3>
+          <div className="form-title">Fill Transaction Details</div>
           <input
+            placeholder="Amount"
             onChange={this.onInputChange}
             type="text"
             id="amountInput"
             name="amount"
           />
-          <h3>Vendor</h3>
           <input
+            placeholder="Vendor"
             type="text"
             id="vendorInput"
             name="vendor"
             onChange={this.onInputChange}
           />
-          <h3>Category</h3>
           <input
+            placeholder="Category"
             type="text"
             id="categoryInput"
             name="category"
             onChange={this.onInputChange}
           />
-          <button
-            name="type"
-            value="deposit"
-            id="depositBtn"
-            onClick={this.addTransaction}
-          >
-            Deposit
-          </button>
-          <button
-            name="type"
-            value="withdraw"
-            id="withdrawBtn"
-            onClick={this.addTransaction}
-          >
-            Withdraw
-          </button>
+          <div className="btn-container">
+            <button
+              name="type"
+              value="deposit"
+              id="depositBtn"
+              onClick={this.addTransaction}
+            >
+              Deposit
+            </button>
+            <button
+              name="type"
+              value="withdraw"
+              id="withdrawBtn"
+              onClick={this.addTransaction}
+            >
+              Withdraw
+            </button>
+          </div>
         </div>
       </div>
     );

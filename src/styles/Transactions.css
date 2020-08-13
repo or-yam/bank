@@ -1,0 +1,40 @@
+.lowBalance {
+  background-color: #fa4659;
+}
+
+.highBalance {
+  background-color: #2eb872;
+}
+
+.transactions-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.balance{
+  /* justify-self: start; */
+  width: 50%;
+  height: 20%;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+
+}
+
+.transactions{
+  justify-self: center;
+  align-self: center;
+  width: 80%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fourth-color);
+  border-radius: 5px;
+}
