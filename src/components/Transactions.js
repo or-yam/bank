@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Transaction from './Transaction';
 import '../styles/Transactions.css';
+import { Link } from 'react-router-dom';
+
 export default class Transactions extends Component {
   render() {
     const { transactions, balance } = this.props;
@@ -19,6 +21,8 @@ export default class Transactions extends Component {
             }
           >
             <span>Your Current Balance : {balance}$</span>
+
+            <Link to="/categories">Veiw by categories</Link>
           </div>
 
           <div className="transactions">

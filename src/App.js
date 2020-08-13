@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import HomePage from './components/HomePage';
 import Transactions from './components/Transactions';
