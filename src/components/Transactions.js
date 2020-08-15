@@ -1,41 +1,59 @@
-import React, { Component } from 'react';
-import Transaction from './Transaction';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Row from './Row';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 import '../styles/Transactions.css';
-import { Link } from 'react-router-dom';
 
-export default class Transactions extends Component {
-  render() {
-    const { transactions, balance } = this.props;
-    if (!transactions.length) {
-      return (
-        <div>
-          <h1>No transactions found</h1>
-        </div>
-      );
-    } else {
-      return (
-        <div className="transactions-container">
-          <div
-            className={
-              balance < 500 ? 'lowBalance balance' : 'highBalance balance'
-            }
-          >
-            <span>Your Current Balance : {balance}$</span>
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
 
-            <Link to="/categories">Veiw by categories</Link>
-          </div>
+export default function SimpleTable(props) {
+  const classes = useStyles();
 
-          <div className="transactions">
-            {transactions.map((t) => (
-              <Transaction
-                key={t._id}
-                removeTransaction={this.props.removeTransaction}
-                transactionData={t}
-              />
-            ))}
-          </div>
-        </div>
-      );
-    }
-  }
+  return (
+    <>
+      <div
+        className={
+          props.balance < 500 ? 'lowBalance balance' : 'highBalance balance'
+        }
+      >
+        <div>Your Current Balance: {props.balance}&nbsp;$</div>
+      </div>
+
+      <div className="transactions-table">
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Vendor</TableCell>
+                <TableCell align="right">Category</TableCell>
+                <TableCell align="right">Amount&nbsp;($)</TableCell>
+                <TableCell align="right"></TableCell>
+              </TableRow>
+            </TableHead>
+
+            <TableBody>
+              {props.transactions.map((row) => (
+                <Row
+                  key={row._id}
+                  row={row}
+                  removeTransaction={props.removeTransaction}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </>
+  );
 }
