@@ -1,43 +1,116 @@
-import React, { Component } from 'react';
+import React from 'react';
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default class NavBar extends Component {
-  render() {
-    return (
-      <>
-        <nav className="main-nav">
-          <ul className="menu">
-            <li>
-              <Link to="/">
-                <img
-                  src="https://image.flaticon.com/icons/svg/714/714286.svg"
-                  alt="logo"
-                />
-                <span>ChiliPepper Pay</span>
-              </Link>
-            </li>
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import BubbleChartIcon from '@material-ui/icons/BubbleChart';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import CreateIcon from '@material-ui/icons/Create';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
-            <li>
-              <Link to="/transactions">
-                <img
-                  src="https://image.flaticon.com/icons/svg/3176/3176253.svg"
-                  alt="trans"
-                />
-                <span>Transactions</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/operations">
-                <img
-                  src="https://image.flaticon.com/icons/svg/909/909670.svg"
-                  alt="operation"
-                />
-                <span>New Transaction</span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </>
-    );
-  }
+const useStyles = makeStyles({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
+
+export default function Navbar() {
+  const classes = useStyles();
+  const [state, setState] = React.useState({
+    left: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setState({ ...state, left: open });
+  };
+
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+      })}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        <Link to="/">
+          <ListItem button key={'home'}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Home'} />
+          </ListItem>
+        </Link>
+
+        <Divider />
+
+        <Link to="/transactions">
+          <ListItem button key={'transactions'}>
+            <ListItemIcon>
+              <AccountBalanceWalletIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Transactions'} />
+          </ListItem>
+        </Link>
+
+        <Link to="/categories">
+          <ListItem button key={'category'}>
+            <ListItemIcon>
+              <BubbleChartIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Categories'} />
+          </ListItem>
+        </Link>
+
+        <Link to="/operations">
+          <ListItem button key={'operation'}>
+            <ListItemIcon>
+              <CreateIcon />
+            </ListItemIcon>
+            <ListItemText primary={'New Transaction'} />
+          </ListItem>
+        </Link>
+      </List>
+    </div>
+  );
+
+  return (
+    <div>
+      <React.Fragment key={'left'}>
+        <Button onClick={toggleDrawer('left', true)}>
+          <MenuIcon />
+        </Button>
+        <Link to="/">
+          <AccountBalanceIcon/>
+        </Link>
+
+        <Drawer
+          anchor={'left'}
+          open={state['left']}
+          onClose={toggleDrawer('left', false)}
+        >
+          {list('left')}
+        </Drawer>
+      </React.Fragment>
+    </div>
+  );
 }

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './styles/App.css';
+
 import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Navbar from './components/NavBar';
+
+import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import Transactions from './components/Transactions';
 import Operations from './components/Operations';
 import Categories from './components/Categories';
+// import TemporaryDrawer from './components/Navbar';
 class App extends Component {
   constructor() {
     super();
@@ -62,56 +65,54 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        <Router>
-          <Navbar />
-          <Route
-            path="/"
-            exact
-            render={({ match }) => <HomePage match={match} />}
-          />
-          <Route
-            path="/transactions"
-            exact
-            render={({ match }) => (
-              <>
-                <Transactions
-                  balance={this.state.balance}
-                  removeTransaction={this.removeTransaction}
-                  transactions={this.state.transactions}
-                  match={match}
-                />
-              </>
-            )}
-          />
-          <Route
-            path="/operations"
-            exact
-            render={({ match }) => (
-              <>
-                <Operations
-                  balance={this.state.balance}
-                  addTransaction={this.addTransaction}
-                  match={match}
-                />
-              </>
-            )}
-          />
-          <Route
-            path="/categories"
-            exact
-            render={({ match }) => (
-              <>
-                <Categories
-                  balanceCalc={this.balanceCalc}
-                  transactions={this.state.transactions}
-                  match={match}
-                />
-              </>
-            )}
-          />
-        </Router>
-      </>
+      <Router>
+        <Navbar />
+        <Route
+          path="/"
+          exact
+          render={({ match }) => <HomePage match={match} />}
+        />
+        <Route
+          path="/transactions"
+          exact
+          render={({ match }) => (
+            <>
+              <Transactions
+                balance={this.state.balance}
+                removeTransaction={this.removeTransaction}
+                transactions={this.state.transactions}
+                match={match}
+              />
+            </>
+          )}
+        />
+        <Route
+          path="/operations"
+          exact
+          render={({ match }) => (
+            <>
+              <Operations
+                balance={this.state.balance}
+                addTransaction={this.addTransaction}
+                match={match}
+              />
+            </>
+          )}
+        />
+        <Route
+          path="/categories"
+          exact
+          render={({ match }) => (
+            <>
+              <Categories
+                balanceCalc={this.balanceCalc}
+                transactions={this.state.transactions}
+                match={match}
+              />
+            </>
+          )}
+        />
+      </Router>
     );
   }
 }
