@@ -16,11 +16,33 @@
   justify-content: center;
   align-items: center;
   font-size: xx-large;
-  box-shadow: 0 0 3px  black;
+  box-shadow: 0 0 3px black;
 }
 
 .transactions-table {
   margin: 15px;
   margin-left: 5rem;
   margin-right: 5rem;
+}
+
+.categories-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-container {
+  padding: 5px;
+  text-align: center;
+  margin: 20px;
+  box-shadow: 0 0 3px black;
+  height: 50%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 5fr;
+}
+
+.category-table {
+  overflow: scroll;
 }

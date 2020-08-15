@@ -1,31 +1,33 @@
 import React, { Component } from 'react';
-import '../styles/Transaction.css';
-import Button from '@material-ui/core/Button';
+
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 import DeleteIcon from '@material-ui/icons/Delete';
-export default class Transaction extends Component {
+import Button from '@material-ui/core/Button';
+
+export default class Row extends Component {
   render() {
-    const { transactionData } = this.props;
+    const { row } = this.props;
     const removeTransaction = () =>
-      this.props.removeTransaction(transactionData._id);
+      this.props.removeTransaction(this.props.row._id);
     return (
-      <div
-        className={
-          transactionData.amount < 0
-            ? 'negativeTrans transaction '
-            : 'positiveTrans transaction '
-        }
+      <TableRow
+        key={row.vendor}
+        style={{
+          backgroundColor: row.amount < 0 ? '#f6685e' : '#a2cf6e',
+        }}
       >
-        <div className="transData">
-          <span>Amount: {transactionData.amount}$</span>
-          <span>Vendor:{transactionData.vendor}</span>
-          <span>Category:{transactionData.category}</span>
+        <TableCell component="th" scope="row">
+          {row.vendor}
+        </TableCell>
+        <TableCell align="right">{row.category}</TableCell>
+        <TableCell align="right">{row.amount}</TableCell>
+        <TableCell align="right">
           <Button onClick={removeTransaction} variant="contained">
             <DeleteIcon />
           </Button>
-        </div>
-      </div>
+        </TableCell>
+      </TableRow>
     );
   }
 }
-
-//amount: 3200, vendor: 'Elevation', category: 'Salary'

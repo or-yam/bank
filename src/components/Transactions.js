@@ -1,6 +1,8 @@
 import React from 'react';
+import Transaction from './Transaction';
+import '../styles/Transactions.css';
+
 import { makeStyles } from '@material-ui/core/styles';
-import Row from './Row';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,7 +11,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import '../styles/Transactions.css';
 
 const useStyles = makeStyles({
   table: {
@@ -44,7 +45,7 @@ export default function SimpleTable(props) {
 
             <TableBody>
               {props.transactions.map((row) => (
-                <Row
+                <Transaction
                   key={row._id}
                   row={row}
                   removeTransaction={props.removeTransaction}

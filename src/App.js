@@ -10,7 +10,6 @@ import Transactions from './components/Transactions';
 import Operations from './components/Operations';
 import Categories from './components/Categories';
 
-
 // import SimpleTable from './components/demoTable'
 // import TemporaryDrawer from './components/Navbar';
 class App extends Component {
@@ -110,6 +109,7 @@ class App extends Component {
               <Categories
                 balanceCalc={this.balanceCalc}
                 transactions={this.state.transactions}
+                removeTransaction={this.removeTransaction}
                 match={match}
               />
             </>
