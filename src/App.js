@@ -7,11 +7,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import Transactions from './components/Transactions';
-import Operations from './components/Operations';
+import OperationForm from './components/OperationForm';
 import Categories from './components/Categories';
 
-// import SimpleTable from './components/demoTable'
-// import TemporaryDrawer from './components/Navbar';
 class App extends Component {
   constructor() {
     super();
@@ -39,8 +37,8 @@ class App extends Component {
     axios.post('http://localhost:4000/transaction', operation).then((res) => {
       const updatedTransactions = [...this.state.transactions, res.data];
       const updatedBalance = this.balanceCalc(updatedTransactions);
-      updatedBalance < 0
-        ? alert('too short')
+      updatedBalance < 0 //make the validation on  the server
+        ? alert('too short') //send alert also for success
         : this.setState({
             transactions: updatedTransactions,
             balance: updatedBalance,
@@ -93,7 +91,7 @@ class App extends Component {
           exact
           render={({ match }) => (
             <>
-              <Operations
+              <OperationForm
                 balance={this.state.balance}
                 addTransaction={this.addTransaction}
                 match={match}

@@ -94,13 +94,13 @@ export default function Navbar() {
   );
 
   return (
-    <div>
+    <div className="main-nav">
       <React.Fragment key={'left'}>
         <Button onClick={toggleDrawer('left', true)}>
-          <MenuIcon />
+          <MenuIcon fontSize="large" />
         </Button>
         <Link to="/">
-          <AccountBalanceIcon/>
+          <AccountBalanceIcon fontSize="large" />
         </Link>
 
         <Drawer
