@@ -7,6 +7,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 // import CustomizedSnackbars from '../components/SnackBar'
 
 const useStyles = makeStyles((theme) => ({
@@ -77,28 +79,29 @@ export default function BasicTextFields(props) {
             id="amount"
             autoComplete="Amount"
           />
+          <ButtonGroup>
+            <Button 
+              onClick={addTransaction}
+              value="deposit"
+              type="Button"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Deposit
+            </Button>
 
-          <Button
-            onClick={addTransaction}
-            value="deposit"
-            type="Button"
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Deposit
-          </Button>
-
-          <Button
-            onClick={addTransaction}
-            value="withdraw"
-            type="Button"
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-          >
-            Withdraw
-          </Button>
+            <Button
+              onClick={addTransaction}
+              value="withdraw"
+              type="Button"
+              variant="contained"
+              color="secondary"
+              className={classes.submit}
+            >
+              Withdraw
+            </Button>
+          </ButtonGroup>
         </div>
       </div>
     </Container>

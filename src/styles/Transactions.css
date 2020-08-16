@@ -46,5 +46,6 @@
 }
 
 .category-table {
-  overflow: scroll;
+  overflow: auto;
+
 }

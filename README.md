@@ -31,6 +31,7 @@
 
 ### To Do
 
+- move component to functions
 - Manage Users (login and register)
 - handle errors on server side
 - add snackBars on preforming operations

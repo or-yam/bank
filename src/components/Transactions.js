@@ -17,11 +17,13 @@ const useStyles = makeStyles({
   },
 });
 
-const formatNumber = (num) =>
+export const formatNumber = (num) =>
   num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
 export default function SimpleTable(props) {
   const classes = useStyles();
+
+  const customVendorStyle = { width: '15px' };
 
   return (
     <>
@@ -38,10 +40,10 @@ export default function SimpleTable(props) {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Vendor</TableCell>
-                <TableCell align="right">Category</TableCell>
-                <TableCell align="right">Amount&nbsp;($)</TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell style={customVendorStyle}>Vendor</TableCell>
+                <TableCell align="center">Category</TableCell>
+                <TableCell align="center">Amount&nbsp;($)</TableCell>
+                <TableCell align="center"></TableCell>
               </TableRow>
             </TableHead>
 
