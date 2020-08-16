@@ -35,6 +35,7 @@ a {
 }
 
 .main-nav {
+  background-image: linear-gradient(to left, #9fa9e0, #303f9f);
   display: flex;
   align-items: center;
 }

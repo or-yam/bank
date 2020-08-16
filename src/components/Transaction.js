@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 export default class Row extends Component {
   render() {
-    const { row } = this.props;
+    const { row, formatNumber } = this.props;
     const removeTransaction = () =>
       this.props.removeTransaction(this.props.row._id);
     return (
@@ -21,7 +21,7 @@ export default class Row extends Component {
           {row.vendor}
         </TableCell>
         <TableCell align="right">{row.category}</TableCell>
-        <TableCell align="right">{row.amount}</TableCell>
+        <TableCell align="right">{formatNumber(row.amount)}</TableCell>
         <TableCell align="right">
           <Button onClick={removeTransaction} variant="contained">
             <DeleteIcon />

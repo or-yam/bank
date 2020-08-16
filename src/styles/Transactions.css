@@ -30,15 +30,17 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .category-container {
-  padding: 5px;
   text-align: center;
-  margin: 20px;
+  padding: 5px;
+  margin: 12px;
   box-shadow: 0 0 3px black;
   height: 50%;
-  width: 100%;
+  width: 40%;
   display: grid;
   grid-template-rows: 1fr 1fr 5fr;
 }

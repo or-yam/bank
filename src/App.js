@@ -18,6 +18,7 @@ class App extends Component {
       balance: '',
     };
   }
+  
 
   balanceCalc = (transArr) =>
     transArr.map((t) => t.amount).reduce((acc, sum) => acc + sum, 0);

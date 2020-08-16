@@ -17,6 +17,9 @@ const useStyles = makeStyles({
   },
 });
 
+const formatNumber = (num) =>
+  num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
 export default function SimpleTable(props) {
   const classes = useStyles();
 
@@ -27,7 +30,7 @@ export default function SimpleTable(props) {
           props.balance < 500 ? 'lowBalance balance' : 'highBalance balance'
         }
       >
-        <div>Your Current Balance: {props.balance}&nbsp;$</div>
+        <div>Your Current Balance: {formatNumber(props.balance)}&nbsp;$</div>
       </div>
 
       <div className="transactions-table">
@@ -45,6 +48,7 @@ export default function SimpleTable(props) {
             <TableBody>
               {props.transactions.map((row) => (
                 <Transaction
+                  formatNumber={formatNumber}
                   key={row._id}
                   row={row}
                   removeTransaction={props.removeTransaction}
