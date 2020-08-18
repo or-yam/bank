@@ -38,6 +38,7 @@ a {
   background-image: linear-gradient(to left, #9fa9e0, #303f9f);
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .main-nav a {

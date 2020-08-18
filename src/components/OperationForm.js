@@ -9,7 +9,6 @@ import Container from '@material-ui/core/Container';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
-// import CustomizedSnackbars from '../components/SnackBar'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +79,7 @@ export default function BasicTextFields(props) {
             autoComplete="Amount"
           />
           <ButtonGroup>
-            <Button 
+            <Button
               onClick={addTransaction}
               value="deposit"
               type="Button"

@@ -20,26 +20,15 @@ router.get('/transactions', (req, res) => {
 
 router.post('/transaction', (req, res) => {
   const transaction = req.body;
-  const newTrans = new Transaction({
-    amount: transaction.amount,
-    category: transaction.category,
-    vendor: transaction.vendor,
-  });
+  const newTrans = new Transaction(transaction);
   newTrans.save().then((t) => res.send(t));
 });
 
 router.delete('/transaction/:id', (req, res) => {
-  const id = req.params.id;
-  Transaction.findByIdAndRemove(id).exec((err, data) => { //handle errors better!!
-    if (err) {
-      res.send(err);
-    }
-    if (!data) {
-      res.send('not found');
-    } else {
-      res.send('success');
-    }
-  });
+  const { id } = req.params;
+  Transaction.findByIdAndDelete(id, (err) =>
+    err ? res.send(err) : res.send('deleted')
+  );
 });
 
 module.exports = router;

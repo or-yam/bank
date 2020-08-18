@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Category(props) {
+const Category = (props) => {
   const classes = useStyles();
   const { name, transactions, balanceCalc, removeTransaction } = props;
   const total = balanceCalc(transactions);
@@ -51,4 +51,6 @@ export default function Category(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Category;

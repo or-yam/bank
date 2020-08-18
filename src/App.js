@@ -18,7 +18,6 @@ class App extends Component {
       balance: '',
     };
   }
-  
 
   balanceCalc = (transArr) =>
     transArr.map((t) => t.amount).reduce((acc, sum) => acc + sum, 0);
@@ -49,7 +48,7 @@ class App extends Component {
 
   removeTransaction = (id) => {
     axios.delete(`http://localhost:4000/transaction/${id}`).then((res) => {
-      if (res.data === 'success') {
+      if (res.data === 'deleted') {
         axios.get('http://localhost:4000/transactions').then((res) => {
           const updatedTransactions = res.data;
           const updatedBalance = this.balanceCalc(updatedTransactions);
