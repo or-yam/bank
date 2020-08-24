@@ -1,0 +1,47 @@
+:root {
+  --first-color: #08d9d6;
+
+  --second-color: #252a34;
+
+  --third-color: #ff2e63;
+
+  --fourth-color: #eaeaea;
+
+  --primary-text-color: #212121;
+
+  --secondary-text-color: #757575;
+
+  --divider-color: #bdbdbd;
+
+  --icon-color: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+#root {
+  height: 100vh;
+  font-family: Roboto;
+}
+
+.main-nav {
+  background-image: linear-gradient(to left, #9fa9e0, #303f9f);
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.main-nav a {
+  margin-left: auto;
+  padding: 6px 8px;
+}
