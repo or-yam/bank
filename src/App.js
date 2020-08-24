@@ -76,41 +76,35 @@ class App extends Component {
           path="/transactions"
           exact
           render={({ match }) => (
-            <>
-              <Transactions
-                balance={this.state.balance}
-                removeTransaction={this.removeTransaction}
-                transactions={this.state.transactions}
-                match={match}
-              />
-            </>
+            <Transactions
+              balance={this.state.balance}
+              removeTransaction={this.removeTransaction}
+              transactions={this.state.transactions}
+              match={match}
+            />
           )}
         />
         <Route
           path="/operations"
           exact
           render={({ match }) => (
-            <>
-              <OperationForm
-                balance={this.state.balance}
-                addTransaction={this.addTransaction}
-                match={match}
-              />
-            </>
+            <OperationForm
+              balance={this.state.balance}
+              addTransaction={this.addTransaction}
+              match={match}
+            />
           )}
         />
         <Route
           path="/categories"
           exact
           render={({ match }) => (
-            <>
-              <Categories
-                balanceCalc={this.balanceCalc}
-                transactions={this.state.transactions}
-                removeTransaction={this.removeTransaction}
-                match={match}
-              />
-            </>
+            <Categories
+              balanceCalc={this.balanceCalc}
+              transactions={this.state.transactions}
+              removeTransaction={this.removeTransaction}
+              match={match}
+            />
           )}
         />
       </Router>
